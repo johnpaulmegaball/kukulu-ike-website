@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t1">
+  <title id="t1">Workshop icon: a flask</title>
+  <path d="M26 8h12v14l12 26a4 4 0 0 1-4 6H18a4 4 0 0 1-4-6l12-26V8z" fill="none" stroke="#1B3A8F" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 40h20" stroke="#1B3A8F" stroke-width="3"/>
+  <circle cx="27" cy="47" r="2.5" fill="#F2B705"/>
+  <circle cx="34" cy="51" r="2" fill="#2E9E5B"/>
+  <circle cx="38" cy="45" r="1.8" fill="#2E9E5B"/>
+</svg>

@@ -1,0 +1,1341 @@
+// =========================================================
+// Kūkulu ʻIke — Opportunity Explorer data
+// Shared by opportunities.html (the full Explorer) and index.html
+// (the "Opportunity of the Month" homepage spotlight). Every
+// opportunity lives here as plain data. Add a new one by copying an
+// existing object; nothing else needs to change, both pages render
+// whatever is in this array.
+//
+// Field guide:
+//   type          one of TYPE_LABELS below
+//   fields        array of FIELD_LABELS keys (a program can span more than one)
+//   grades        array of "elementary" | "middle" | "high"
+//   location      one of LOCATION_LABELS below
+//   cost          one of COST_LABELS below
+//   season        one of SEASON_LABELS below, when the opportunity
+//                 actually runs (not when you apply, see "deadline")
+//   status        one of STATUS_LABELS below (see note there on how we
+//                 picked these, they're general/seasonal, not live data)
+//   deadline      short plain-language text, intentionally not a hard
+//                 date in most cases, see the note above STATUS_LABELS
+//   homeFeatured  true for the 3 opportunities shown in the homepage
+//                 "Opportunity of the Month" spotlight (js/opportunity-spotlight.js).
+//                 Swap these out by hand every so often to keep the
+//                 homepage feeling current, they should generally be
+//                 "status: opening-soon" so the deadline feels real.
+// =========================================================
+
+var TYPE_LABELS = {
+  competition: "Competition",
+  internship: "Internship",
+  research: "Research",
+  scholarship: "Scholarship",
+  mentors: "Mentors"
+};
+
+// What the "View ___" button says, keyed by the same type values.
+var TYPE_BUTTON_LABELS = {
+  competition: "View Competition",
+  internship: "View Internship",
+  research: "View Research Program",
+  scholarship: "View Scholarship",
+  mentors: "View Mentorship"
+};
+
+var FIELD_LABELS = {
+  "robotics": "Robotics",
+  "engineering": "Engineering",
+  "computer-science": "Computer Science",
+  "space-aerospace": "Space & Aerospace",
+  "life-health": "Life & Health Sciences",
+  "environmental-ocean": "Environmental & Ocean Science",
+  "math": "Math",
+  "physics": "Physics",
+  "general-stem": "General STEM"
+};
+
+var FIELD_ICONS = {
+  "robotics": "🤖",
+  "engineering": "🛠️",
+  "computer-science": "💻",
+  "space-aerospace": "🚀",
+  "life-health": "⚕️",
+  "environmental-ocean": "🌊",
+  "math": "➗",
+  "physics": "⚛️",
+  "general-stem": "🔬"
+};
+
+var GRADE_LABELS = {
+  elementary: "Elementary School",
+  middle: "Middle School",
+  high: "High School"
+};
+
+// Used to build the "Grades K–12" style tag on each card.
+var GRADE_TIER_BOUNDS = {
+  elementary: [0, 5],
+  middle: [6, 8],
+  high: [9, 12]
+};
+
+var LOCATION_LABELS = {
+  oahu: "Oʻahu",
+  hawaii: "Hawaiʻi",
+  mainland: "Mainland",
+  online: "Online",
+  international: "International"
+};
+
+var COST_LABELS = {
+  free: "Free",
+  paid: "Paid / Stipend",
+  fee: "Fee Required"
+};
+
+var SEASON_LABELS = {
+  summer: "Summer",
+  "school-year": "School Year",
+  ongoing: "Rolling / Ongoing"
+};
+
+// A note on "status" and "deadline": we don't have a live feed into
+// each organization's application portal, so these aren't real-time.
+// They're set based on each program's typical, well-established yearly
+// pattern (e.g. FIRST Robotics registers teams every fall). Always
+// point students to the official link for the current, exact date,
+// the disclaimer at the bottom of this page says so too.
+var STATUS_LABELS = {
+  open: "Open",
+  "opening-soon": "Opening Soon",
+  closed: "Closed",
+  annual: "Annual"
+};
+
+function gradeRangeLabel(grades) {
+  var lo = Infinity, hi = -Infinity;
+  grades.forEach(function (g) {
+    var bounds = GRADE_TIER_BOUNDS[g];
+    if (bounds[0] < lo) lo = bounds[0];
+    if (bounds[1] > hi) hi = bounds[1];
+  });
+  var loText = lo === 0 ? "K" : String(lo);
+  return "Grades " + loText + "–" + hi;
+}
+
+var OPPORTUNITIES = [
+  {
+    name: "FIRST Robotics Competition (FRC)",
+    icon: "🤖",
+    href: "https://www.firstinspires.org/robotics/frc",
+    type: "competition",
+    fields: ["robotics", "engineering"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens in early fall",
+    description: "Teams design, build, and program a robot to compete each season with real engineer mentors.",
+    homeFeatured: true
+  },
+  {
+    name: "Polygence",
+    icon: "🔬",
+    href: "https://www.polygence.org/",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "fee",
+    season: "ongoing",
+    status: "open",
+    deadline: "Rolling admissions, apply anytime",
+    description: "1-on-1 mentorship pairing students with PhD researchers on an independent project."
+  },
+  {
+    name: "Science Olympiad",
+    icon: "🏆",
+    href: "https://www.soinc.org/",
+    type: "competition",
+    fields: ["engineering", "physics", "life-health"],
+    grades: ["middle", "high"],
+    location: "oahu",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "School team registration typically opens in early fall",
+    description: "Teams compete in biology, chemistry, engineering, and physics events through hands-on tests and builds."
+  },
+  {
+    name: "Oceanit Student Programs",
+    icon: "🌊",
+    href: "https://oceanit.com/student-intern-program/",
+    type: "internship",
+    fields: ["engineering", "computer-science", "environmental-ocean"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer positions typically posted in spring, check site for openings",
+    description: "Competitive Honolulu internship tackling real engineering, AI, and environmental R&D projects."
+  },
+  {
+    name: "National Science Bowl",
+    icon: "🧠",
+    href: "https://science.osti.gov/wdts/nsb",
+    type: "competition",
+    fields: ["physics", "math", "life-health"],
+    grades: ["middle", "high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Regional registration typically opens in fall",
+    description: "Buzzer competition testing teams on science and math, run by the U.S. Department of Energy."
+  },
+  {
+    name: "NASA OSTEM Internships",
+    icon: "🚀",
+    href: "https://www.nasa.gov/learning-resources/internship-programs/",
+    type: "internship",
+    fields: ["space-aerospace", "engineering", "computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "paid",
+    season: "ongoing",
+    status: "open",
+    deadline: "Rolling seasonal sessions, check site for the next window",
+    description: "Work alongside NASA scientists and engineers on real space and aerospace projects."
+  },
+  {
+    name: "HOSA: Future Health Professionals",
+    icon: "⚕️",
+    href: "https://hosa.org/",
+    type: "competition",
+    fields: ["life-health"],
+    grades: ["middle", "high"],
+    location: "oahu",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Join through your school chapter, typically in early fall",
+    description: "For students interested in health careers: competitive events, conferences, and leadership roles.",
+    homeFeatured: true
+  },
+  {
+    name: "PISCES STEM Program",
+    icon: "🛰️",
+    href: "https://pacificspacecenter.com/",
+    type: "internship",
+    fields: ["space-aerospace", "robotics", "engineering", "computer-science"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer internships typically posted in early spring",
+    description: "Hawaiʻi aerospace research agency offering paid summer internships in robotics, engineering, and geology."
+  },
+  {
+    name: "UH Mānoa JESSE Internship",
+    icon: "🛠️",
+    href: "https://manoa.hawaii.edu/engineering/admissions/k-12-outreach/jesse-internship.php",
+    type: "internship",
+    fields: ["engineering", "robotics", "space-aerospace"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer program, applications typically open in winter",
+    description: "Six-week paid summer engineering internship pairing Hawaiʻi juniors with UH faculty mentors."
+  },
+  {
+    name: "FIRST Tech Challenge (FTC)",
+    icon: "⚙️",
+    href: "https://www.firstinspires.org/robotics/ftc",
+    type: "competition",
+    fields: ["robotics", "engineering", "computer-science"],
+    grades: ["middle", "high"],
+    location: "oahu",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens in early fall",
+    description: "Middle and high schoolers design, build, and program a robot to compete head-to-head each season."
+  },
+  {
+    name: "FIRST LEGO League (FLL)",
+    icon: "🧱",
+    href: "https://www.firstinspires.org/robotics/fll",
+    type: "competition",
+    fields: ["robotics", "engineering"],
+    grades: ["elementary", "middle"],
+    location: "oahu",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens over the summer",
+    description: "Entry-level robotics program combining LEGO robot building with real-world research projects."
+  },
+  {
+    name: "Oʻahu Math League",
+    icon: "➗",
+    href: "https://www.oahumath.org/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Runs all school year, join through your school's math team",
+    description: "Oʻahu high schools compete head-to-head in team and individual math contests all year."
+  },
+  {
+    name: "Hawaiʻi State Science and Engineering Fair",
+    icon: "🔎",
+    href: "https://www.hawaiiacademyofscience.org/about-the-fair",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Advance through school and district fairs starting in winter",
+    description: "Hawaiʻi's statewide science fair, advancing from school fairs to present original research."
+  },
+  {
+    name: "STEMworks Hawaiʻi",
+    icon: "🧑‍🏫",
+    href: "https://www.stemworkshawaii.org/",
+    type: "mentors",
+    fields: ["general-stem"],
+    grades: ["elementary", "middle", "high"],
+    location: "hawaii",
+    cost: "free",
+    season: "ongoing",
+    status: "open",
+    deadline: "Ongoing, no application deadline",
+    description: "Statewide program connecting students with STEM mentors and industry professionals."
+  },
+  {
+    name: "Hackathons",
+    icon: "💻",
+    href: "https://hackathons.hackclub.com/",
+    type: "competition",
+    fields: ["computer-science", "engineering"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "ongoing",
+    status: "open",
+    deadline: "Varies by event, browse current listings",
+    description: "Time-boxed coding competitions where teams build a project from scratch in a day or weekend."
+  },
+  {
+    name: "USA Physics Olympiad (USAPhO)",
+    icon: "⚛️",
+    href: "https://www.aapt.org/physicsteam/PT-landing.cfm",
+    type: "competition",
+    fields: ["physics"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Register through your school, typically in early fall",
+    description: "Rigorous exam-based competition that selects the U.S. team for the International Physics Olympiad."
+  },
+  {
+    name: "USA Chemistry Olympiad (USAChO / USNCO)",
+    icon: "🧪",
+    href: "https://www.acs.org/education/olympiad.html",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Register through your school, typically in early fall",
+    description: "Multi-round chemistry exam that selects the U.S. team for the International Chemistry Olympiad."
+  },
+  {
+    name: "USA Biology Olympiad (USABO)",
+    icon: "🧬",
+    href: "https://www.usabo-trc.org/",
+    type: "competition",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Register through your school, typically in early fall",
+    description: "National biology exam that selects the U.S. team for the International Biology Olympiad."
+  },
+  {
+    name: "Anatomage Tournament",
+    icon: "🫀",
+    href: "https://hosa.org/anatomage-tournament-at-the-hosa-vilc/",
+    type: "competition",
+    fields: ["life-health"],
+    grades: ["middle", "high"],
+    location: "hawaii",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Register through your HOSA chapter for winter/spring conferences",
+    description: "HOSA-affiliated team competition testing anatomy knowledge on the Anatomage Table."
+  },
+  {
+    name: "SEAP (Science & Engineering Apprentice Program)",
+    icon: "⚓",
+    href: "https://www.navalsteminterns.us/seap/",
+    type: "internship",
+    fields: ["engineering", "general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer apprenticeship, applications typically open in fall/winter",
+    description: "Eight-week paid summer apprenticeship in real Department of Navy research labs."
+  },
+  {
+    name: "ACE Mentor Program of Honolulu",
+    icon: "🏗️",
+    href: "https://www.acementor.org/affiliates/honolulu-hi/",
+    type: "mentors",
+    fields: ["engineering"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Sign-ups typically open at the start of the school year",
+    description: "Free mentor-led program introducing students to architecture, construction, and engineering.",
+    homeFeatured: true
+  },
+  {
+    name: "Iris Okawa Design for Civic Leadership + AI",
+    icon: "🏛️",
+    href: "https://www.eventbrite.com/e/iris-okawa-design-for-civic-leadership-ai-2026-tickets-1985977425942",
+    type: "competition",
+    fields: ["computer-science", "general-stem"],
+    grades: ["middle", "high"],
+    location: "oahu",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Check the Eventbrite listing for the current date",
+    description: "Design-thinking challenge pairing Hawaiʻi students with AI tools to solve real community problems."
+  },
+  {
+    name: "Hawaiʻi Space Flight Laboratory Internships",
+    icon: "🌌",
+    href: "https://www.hsfl.hawaii.edu/summer-internships/",
+    type: "internship",
+    fields: ["space-aerospace", "engineering"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer internships, applications typically open in winter",
+    description: "Hands-on aerospace internships at UH Mānoa building circuits, CAD models, and flight hardware."
+  },
+  {
+    name: "SWE / SHPE Hawaiʻi Awards",
+    icon: "🎓",
+    href: "https://hi.swe.org/scholarships.html",
+    type: "scholarship",
+    fields: ["engineering", "general-stem"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "ongoing",
+    status: "annual",
+    deadline: "Deadlines vary each year, typically open in spring",
+    description: "Scholarships and recognition from Hawaiʻi's Society of Women and Hispanic Professional Engineers."
+  },
+  {
+    name: "ROOTED in Agriculture (UH CTAHR)",
+    icon: "🌾",
+    href: "https://manoa.hawaii.edu/ctahr/dia/rooted-in-ag/",
+    type: "mentors",
+    fields: ["environmental-ocean", "general-stem"],
+    grades: ["elementary", "middle", "high"],
+    location: "oahu",
+    cost: "free",
+    season: "ongoing",
+    status: "open",
+    deadline: "Ongoing, contact to schedule a visit",
+    description: "Free UH Mānoa program using VR tours to connect students with agricultural technology."
+  },
+  {
+    name: "SSP (Summer Science Program)",
+    icon: "🔭",
+    href: "https://ssp.org/",
+    type: "research",
+    fields: ["physics", "life-health", "space-aerospace"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "fee",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer residential program, applications typically due by February",
+    description: "Selective 5-week residential program tackling real astrophysics, biochemistry, or genomics research."
+  },
+  {
+    name: "MATHCOUNTS",
+    icon: "🧮",
+    href: "https://www.mathcounts.org/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["middle"],
+    location: "oahu",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "School registration typically opens in fall",
+    description: "National math competition series for grades 6–8 building problem-solving skills."
+  },
+
+  // ---- Added later: local Hawaiʻi summer programs + national/NASA
+  // programs. (Note: "Summer Science Program (SSP)" was suggested
+  // again here but it's already above, so it wasn't duplicated.) ----
+  {
+    name: "Project Hōkūlani",
+    icon: "🌺",
+    href: "https://cds.coe.hawaii.edu/hokulani/",
+    type: "mentors",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "New cohort applications typically open each spring",
+    description: "Culturally grounded program introducing Native Hawaiian students to six STEM fields with mentoring and paid internships."
+  },
+  {
+    name: "JABSOM Medical Diagnosis & Treatment",
+    icon: "🩺",
+    href: "https://jabsom.hawaii.edu/explore/youth-programs/medical-diagnosis-and-treatment.html",
+    type: "internship",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Week-long summer program, applications typically open in spring",
+    description: "Week-long hands-on program letting students 16+ experience medical school labs and clinical skills training."
+  },
+  {
+    name: "HIMB Marine Science Investigations",
+    icon: "🐠",
+    href: "https://www.himb.hawaii.edu/education/intensive-learning-programs/",
+    type: "research",
+    fields: ["environmental-ocean", "life-health"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Week-long program each June, applications typically open in winter",
+    description: "Week-long field course at the Hawaiʻi Institute of Marine Biology teaching reef ecology and water-quality testing."
+  },
+  {
+    name: "HIMB SMMILE",
+    icon: "🐬",
+    href: "https://seagrant.soest.hawaii.edu/smmile/",
+    type: "research",
+    fields: ["environmental-ocean", "life-health"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "10-day summer program, applications typically open in winter/spring",
+    description: "Fully funded 10-day marine mammal science program on Moku o Loʻe for Hawaiʻi and American Sāmoa students."
+  },
+  {
+    name: "Hawaiian Volcanoes & Hazards Program",
+    icon: "🌋",
+    href: "https://www.soest.hawaii.edu/soestwp/media/high-school-student-summer-opportunities/",
+    type: "research",
+    fields: ["environmental-ocean"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "One-week summer program, sign up to be notified when it opens",
+    description: "One-week field and classroom program exploring Hawaiʻi's volcanoes and hazards with UH and HPU earth scientists."
+  },
+  {
+    name: "UH Mānoa Summer Scholar Program",
+    icon: "🎓",
+    href: "https://www.outreach.hawaii.edu/summer/summer-scholar-program/",
+    type: "internship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "fee",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer sessions run May–August, applications typically open in winter",
+    description: "Take real UH Mānoa college courses over the summer and earn transferable college credit while still in high school."
+  },
+  {
+    name: "Honolulu CC Summer CTE Academy",
+    icon: "🔧",
+    href: "https://www.honolulu.hawaii.edu/academics/cte-academy/",
+    type: "internship",
+    fields: ["engineering", "general-stem"],
+    grades: ["high"],
+    location: "oahu",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Five-week summer academy, applications typically open in spring",
+    description: "Free five-week academy rotating Oʻahu high schoolers through hands-on trade and technology programs."
+  },
+  {
+    name: "NASA SEES High School Summer Intern",
+    icon: "🌎",
+    href: "https://csr.utexas.edu/education-outreach/high-school-internships/sees/",
+    type: "research",
+    fields: ["environmental-ocean", "space-aerospace"],
+    grades: ["high"],
+    location: "online",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer internship, the 2026 deadline was February 22",
+    description: "Nationally competitive NASA-funded internship analyzing real Earth and space science data remotely."
+  },
+  {
+    name: "NASA GeneLab for High Schools (GL4HS)",
+    icon: "🧬",
+    href: "https://genelab.nasa.gov/internships/GL4HS",
+    type: "research",
+    fields: ["life-health", "computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer program, applications typically due in late February",
+    description: "Free virtual NASA program teaching rising juniors and seniors to analyze real spaceflight biology data."
+  },
+  {
+    name: "NASA TechRise Student Challenge",
+    icon: "🎈",
+    href: "https://www.futureengineers.org/nasatechrise",
+    type: "competition",
+    fields: ["space-aerospace", "engineering"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "The 2026-27 challenge is expected to open in September 2026",
+    description: "Teams design a real experiment that could fly to the stratosphere on a NASA-sponsored balloon or rocket."
+  },
+  {
+    name: "NASA App Development Challenge",
+    icon: "📱",
+    href: "https://www.nasa.gov/learning-resources/app-development-challenge/",
+    type: "competition",
+    fields: ["computer-science", "space-aerospace"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "Currently paused for 2026, check the site for updates on its return",
+    description: "Coding challenge where students help solve real technical problems for NASA's deep space missions."
+  },
+  {
+    name: "NASA HUNCH",
+    icon: "🔨",
+    href: "https://nasahunch.com/",
+    type: "internship",
+    fields: ["engineering"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "School-based program, contact NASA HUNCH to see if your school can join",
+    description: "Students design and fabricate real flight hardware and gear that NASA astronauts actually use on the ISS."
+  },
+  {
+    name: "NASA Human Exploration Rover Challenge",
+    icon: "🪐",
+    href: "https://www.nasa.gov/learning-resources/nasa-human-exploration-rover-challenge/",
+    type: "competition",
+    fields: ["engineering", "space-aerospace"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "The 2027 event is set for April 21–24 in Huntsville, AL, registration is open now",
+    description: "Nine-month challenge to design and build a human- or remote-powered rover, competing at NASA Marshall in Alabama."
+  },
+  {
+    name: "NASA Student Launch",
+    icon: "🚀",
+    href: "https://www.nasa.gov/learning-resources/nasa-student-launch/",
+    type: "competition",
+    fields: ["space-aerospace", "engineering"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Nine-month challenge, proposals typically due in early fall",
+    description: "Nine-month challenge to design, build, and launch a high-powered rocket carrying a real science payload."
+  },
+  {
+    name: "NASA Dream with Us Design Challenge",
+    icon: "✏️",
+    href: "https://www.nasa.gov/dream-with-us/",
+    type: "competition",
+    fields: ["space-aerospace", "engineering"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "Submission deadline typically in January, next cycle to be announced",
+    description: "Teams submit an original design solving a real NASA aeronautics challenge, like agricultural drones."
+  },
+  {
+    name: "MITES Summer",
+    icon: "🏫",
+    href: "https://mites.mit.edu/",
+    type: "internship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Applications typically due by February 1",
+    description: "Selective, fully funded six-week MIT residential program in math, physics, and engineering for rising seniors."
+  },
+  {
+    name: "Research Science Institute (RSI)",
+    icon: "🔬",
+    href: "https://www.cee.org/programs/research-science-institute-rsi/",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Applications typically due by early December",
+    description: "Elite cost-free summer research program at MIT pairing juniors with real research mentors and scientists."
+  },
+  {
+    name: "Regeneron ISEF",
+    icon: "🌎",
+    href: "https://www.societyforscience.org/isef/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "international",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Qualify through the Hawaiʻi State Science and Engineering Fair each spring",
+    description: "The world's largest pre-college science fair, students qualify by winning at Hawaiʻi's state science fair."
+  },
+  {
+    name: "American Mathematics Competitions (AMC)",
+    icon: "🔢",
+    href: "https://maa.org/student-programs/amc/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "AMC 10/12 on November 5 & 13, 2026; AMC 8 in January 2027",
+    description: "Take a proctored math exam at your school, a pathway toward AIME and the U.S. Math Olympiad team."
+  },
+  {
+    name: "CyberPatriot",
+    icon: "🛡️",
+    href: "https://www.uscyberpatriot.org/",
+    type: "competition",
+    fields: ["computer-science"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens over the summer for the fall season",
+    description: "Teams defend virtual networks against simulated cyberattacks in a national youth cyber defense competition."
+  },
+  {
+    name: "Congressional App Challenge",
+    icon: "📲",
+    href: "https://www.congressionalappchallenge.us/",
+    type: "competition",
+    fields: ["computer-science"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Registration typically opens in late summer for a fall submission deadline",
+    description: "Build and submit an original app representing your Hawaiʻi congressional district for national recognition."
+  },
+  {
+    name: "Envirothon",
+    icon: "🌲",
+    href: "https://envirothon.org/",
+    type: "competition",
+    fields: ["environmental-ocean"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "annual",
+    deadline: "State/regional qualifying rounds vary, national final each July",
+    description: "Team-based field competition testing knowledge of soils, water, wildlife, and forestry through hands-on stations."
+  },
+  {
+    name: "National Ocean Sciences Bowl (Aloha Bowl)",
+    icon: "🐳",
+    href: "https://www.soest.hawaii.edu/nosb/",
+    type: "competition",
+    fields: ["environmental-ocean"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Hawaiʻi's Aloha Bowl regional registration typically opens in fall",
+    description: "Hawaiʻi's regional round of the National Ocean Sciences Bowl, testing teams on marine science knowledge."
+  },
+
+  // ---- Added later: national research programs, university summer
+  // programs, and additional competitions. ----
+  {
+    name: "Regeneron Science Talent Search (STS)",
+    icon: "🏅",
+    href: "https://www.societyforscience.org/regeneron-sts/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "open",
+    deadline: "Applications typically open in June and close in mid-November",
+    description: "The nation's oldest and most prestigious research competition for seniors, judged on an independent research project."
+  },
+  {
+    name: "Simons Summer Research Program",
+    icon: "🧪",
+    href: "https://www.stonybrook.edu/simons/",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Summer residential program, applications typically due by February",
+    description: "Selective Stony Brook University program pairing rising seniors with faculty mentors for hands-on research."
+  },
+  {
+    name: "Stanford SHTEM",
+    icon: "🎓",
+    href: "https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "8-week summer program (June-August), check site for application timing",
+    description: "Selective interdisciplinary Stanford research program blending humanities and STEM for rising juniors and seniors."
+  },
+  {
+    name: "Stanford AIMI Summer Research Internship",
+    icon: "🧠",
+    href: "https://aimi.stanford.edu/education/summer-research-internship",
+    type: "research",
+    fields: ["computer-science", "life-health"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Two-week virtual program each summer, check site for application timing",
+    description: "Selective two-week virtual Stanford program teaching AI applications in healthcare and medical imaging."
+  },
+  {
+    name: "UC Santa Cruz Science Internship Program (SIP)",
+    icon: "🔬",
+    href: "https://sip.ucsc.edu/",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "fee",
+    season: "summer",
+    status: "closed",
+    deadline: "9-week summer program, check site for application timing",
+    description: "9-week UC Santa Cruz internship placing students directly into real ongoing faculty research projects."
+  },
+  {
+    name: "COSMOS",
+    icon: "🌌",
+    href: "https://cosmos.ucdavis.edu/",
+    type: "internship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "fee",
+    season: "summer",
+    status: "closed",
+    deadline: "4-week residential program across UC campuses, check site for application timing",
+    description: "Four-week residential UC program letting students dive deep into an advanced STEM research cluster."
+  },
+  {
+    name: "UC Davis Young Scholars Program",
+    icon: "🧬",
+    href: "https://education.ucdavis.edu/young-scholars-program",
+    type: "research",
+    fields: ["life-health", "environmental-ocean"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "fee",
+    season: "summer",
+    status: "closed",
+    deadline: "Six-week residential program, 2026 applications opened January 1",
+    description: "Six-week UC Davis residential research program in biological, agricultural, and environmental sciences."
+  },
+  {
+    name: "George A. Jeffries NanoExplorers",
+    icon: "⚛️",
+    href: "https://nanotech.utdallas.edu/for-students/nanoexplorers/",
+    type: "research",
+    fields: ["physics", "general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Non-residential summer program at UT Dallas, check site for application timing",
+    description: "Hands-on nanotechnology research program at UT Dallas letting students work in real materials science labs."
+  },
+  {
+    name: "Corning Summer Science Research Experience",
+    icon: "🔬",
+    href: "https://www.corning.com/worldwide/en/sustainability/articles/people/community/education/STEM/office-of-stem.html",
+    type: "research",
+    fields: ["engineering", "general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "paid",
+    season: "summer",
+    status: "closed",
+    deadline: "6-8 week summer program for rising seniors, contact OfficeOfSTEM@corning.com",
+    description: "Rising seniors are paired with a mentor in a real Corning research, development, or engineering lab."
+  },
+  {
+    name: "NASA Glenn High School Engineering Institute",
+    icon: "✈️",
+    href: "https://www.nasa.gov/learning-resources/for-students-grades-9-12/nasa-glenn-high-school-engineering-institute",
+    type: "internship",
+    fields: ["engineering", "space-aerospace"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "opening-soon",
+    deadline: "Week-long program, applications open now for the 2026-27 academic year",
+    description: "Free week-long NASA program where students design and test engineering prototypes at Glenn Research Center."
+  },
+  {
+    name: "National Youth Science Camp",
+    icon: "🏕️",
+    href: "https://www.nyscamp.org",
+    type: "internship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "summer",
+    status: "annual",
+    deadline: "Two graduating seniors are selected per state each year, ask your school counselor about Hawaiʻi's nomination process",
+    description: "Free residential STEM camp in West Virginia for two graduating seniors selected from each state, including Hawaiʻi."
+  },
+  {
+    name: "National STEM Challenge",
+    icon: "💡",
+    href: "https://www.nationalstemfestival.com/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Open to grades 7-12 nationwide including U.S. territories, check site for current dates",
+    description: "Submit an original project video on themes like aerospace or health for a chance at the National STEM Festival in D.C."
+  },
+  {
+    name: "Junior Science and Humanities Symposium (JSHS)",
+    icon: "🎤",
+    href: "https://jshs.org/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "Currently suspended as of October 2025, check jshs.org for updates on its return",
+    description: "Department of Defense-sponsored research symposium and competition for grades 9-12 (currently on pause)."
+  },
+  {
+    name: "American Rocketry Challenge",
+    icon: "🚀",
+    href: "https://www.rocketrychallenge.org/",
+    type: "competition",
+    fields: ["space-aerospace", "engineering"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens in the fall",
+    description: "The world's largest model rocket contest, teams design, build, and fly a rocket to hit a precise altitude and duration."
+  },
+  {
+    name: "TEAMS Competition",
+    icon: "🏗️",
+    href: "https://tsaweb.org/teams",
+    type: "competition",
+    fields: ["engineering", "math"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "One-day competition, registration typically opens in the fall",
+    description: "One-day engineering competition combining design/build, multiple choice, and essay rounds on real-world issues."
+  },
+  {
+    name: "ExploraVision",
+    icon: "🔮",
+    href: "https://www.exploravision.org/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["elementary", "middle", "high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Team registration typically opens in the fall",
+    description: "K-12 teams envision and pitch a future technology solving a real-world problem, 10+ years from now."
+  },
+  {
+    name: "eCYBERMISSION",
+    icon: "💻",
+    href: "https://www.ecybermission.com/",
+    type: "competition",
+    fields: ["computer-science", "general-stem"],
+    grades: ["middle"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Web-based competition for grades 6-9, registration typically opens in the fall",
+    description: "Army-sponsored web-based STEM competition where teams solve a real problem affecting their own community."
+  },
+  {
+    name: "Conrad Challenge",
+    icon: "💡",
+    href: "https://www.conradchallenge.org/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "international",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Teams register in the fall for stages running through spring",
+    description: "Teams of 2-5 students ages 13-18 develop a real business plan solving a global challenge, judged in stages."
+  },
+  {
+    name: "Diamond Challenge",
+    icon: "💎",
+    href: "https://diamondchallenge.org/",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "international",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Teams register in fall/winter for the spring Innovation Summit",
+    description: "High school entrepreneurship competition where teams pitch a business or social innovation idea."
+  },
+  {
+    name: "International Mathematical Modeling Challenge",
+    icon: "📐",
+    href: "https://immchallenge.org/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["high"],
+    location: "international",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Team registration and dates vary by region, check immchallenge.org",
+    description: "International team competition where students use math and data to solve a real-world problem over several days."
+  },
+  {
+    name: "MathWorks Math Modeling Challenge (M3 Challenge)",
+    icon: "📊",
+    href: "https://m3challenge.siam.org/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Free 14-hour online contest, held over a designated weekend each winter",
+    description: "Teams of 3-5 juniors/seniors solve a real-world problem using math and data during a single 14-hour window."
+  },
+  {
+    name: "Purple Comet! Math Meet",
+    icon: "➗",
+    href: "https://purplecomet.org/",
+    type: "competition",
+    fields: ["math"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Free online team contest, held each spring",
+    description: "Free international online team math contest for middle and high schoolers, ranging from easy to very challenging problems."
+  },
+  {
+    name: "American Computer Science League (ACSL)",
+    icon: "💻",
+    href: "https://www.acsl.org/",
+    type: "competition",
+    fields: ["computer-science"],
+    grades: ["elementary", "middle", "high"],
+    location: "online",
+    cost: "fee",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Four contests through the school year, registration typically opens in the fall",
+    description: "K-12 programming and computer science contests held in four rounds across the school year."
+  },
+  {
+    name: "CyberStart America",
+    icon: "🔐",
+    href: "https://cyberstart.com/",
+    type: "competition",
+    fields: ["computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Season typically opens in October",
+    description: "Free gamified cybersecurity challenges for high schoolers, top scorers can qualify for national scholarships."
+  },
+  {
+    name: "US Cyber Challenge",
+    icon: "🛡️",
+    href: "https://www.uscyberchallenge.org/",
+    type: "competition",
+    fields: ["computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Free online Cyber Quests run periodically, check site for the current round",
+    description: "Free online cybersecurity competition (Cyber Quests) with top performers invited to in-person training camps."
+  },
+  {
+    name: "USAAAO (Astronomy & Astrophysics Olympiad)",
+    icon: "🔭",
+    href: "https://usaaao.org/",
+    type: "competition",
+    fields: ["physics"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Online training and selection tests typically open in the fall",
+    description: "Online training and selection exams that pick the U.S. team for the International Olympiad on Astronomy and Astrophysics."
+  },
+  {
+    name: "Stockholm Junior Water Prize",
+    icon: "💧",
+    href: "https://www.wef.org/membership--community/students--young-professionals/sjwp/",
+    type: "competition",
+    fields: ["environmental-ocean"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Independent water-related research project, state/regional deadlines vary each spring",
+    description: "The world's most prestigious student award for an independent water-research project, state winners advance nationally."
+  },
+  {
+    name: "Bow Seat Ocean Awareness Contest",
+    icon: "🎨",
+    href: "https://bowseat.org/programs/ocean-awareness-contest/",
+    type: "competition",
+    fields: ["environmental-ocean"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "The 2026 deadline was June 8, the next cycle typically opens in the fall",
+    description: "Creative arts contest for ages 11-18 exploring ocean conservation through art, writing, film, or music."
+  },
+  {
+    name: "Genes in Space",
+    icon: "🧬",
+    href: "https://www.genesinspace.org/",
+    type: "competition",
+    fields: ["life-health", "space-aerospace"],
+    grades: ["middle", "high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "Applications typically open in January and close in April",
+    description: "Grades 7-12 design a DNA experiment that could fly to the ISS and be run by real astronauts."
+  },
+  {
+    name: "BioGENEius Challenge",
+    icon: "🧫",
+    href: "https://biotechinstitute.org/biogeneius/",
+    type: "competition",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Regional/state qualifying rounds vary, national finals each summer",
+    description: "Premier biotechnology research competition for high schoolers, with top finalists presenting in New York City."
+  },
+  {
+    name: "USA Brain Bee",
+    icon: "🧠",
+    href: "https://usabrainbee.com/",
+    type: "competition",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Local competitions run through the school year, national championship each spring",
+    description: "Neuroscience competition testing knowledge of the brain, from local competitions up through the USA Championship."
+  },
+  {
+    name: "National Chemistry Week Illustrated Poem Contest",
+    icon: "⚗️",
+    href: "https://www.acs.org/education/national-chemistry-week/plan-an-event/illustrated-poem-contest.html",
+    type: "competition",
+    fields: ["general-stem"],
+    grades: ["elementary", "middle", "high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Student submissions typically due in late October during National Chemistry Week",
+    description: "K-12 illustrated poem contest through local ACS sections, themed around a different chemistry topic each year."
+  },
+  {
+    name: "Junior Academy (New York Academy of Sciences)",
+    icon: "🌐",
+    href: "https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/",
+    type: "research",
+    fields: ["general-stem"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "fee",
+    season: "ongoing",
+    status: "open",
+    deadline: "Multiple 8-10 week virtual challenges run throughout the year",
+    description: "Selective global online community where teams ages 13-17 solve real STEM problems with expert mentors."
+  },
+  {
+    name: "The Knowledge Society (TKS)",
+    icon: "💡",
+    href: "https://www.tks.world/",
+    type: "mentors",
+    fields: ["computer-science", "general-stem"],
+    grades: ["middle", "high"],
+    location: "online",
+    cost: "fee",
+    season: "ongoing",
+    status: "open",
+    deadline: "10-month program, applications reviewed on a rolling basis",
+    description: "10-month program teaching emerging tech, real-world problem solving, and professional skills to ambitious teens."
+  },
+  {
+    name: "Girls Who Code Summer Programs",
+    icon: "👩‍💻",
+    href: "https://girlswhocode.com/programs",
+    type: "internship",
+    fields: ["computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Free 2-week virtual program, applications typically open in winter/spring",
+    description: "Free 2-week virtual coding immersion for 9th-11th graders, taught by mentors from top tech companies."
+  },
+  {
+    name: "Kode With Klossy",
+    icon: "👩‍💻",
+    href: "https://www.kodewithklossy.com/camp",
+    type: "internship",
+    fields: ["computer-science"],
+    grades: ["high"],
+    location: "online",
+    cost: "free",
+    season: "summer",
+    status: "closed",
+    deadline: "Free 2-week camps each summer, applications typically open in spring",
+    description: "Free 2-week coding camps for young women and gender-expansive teens, virtual or in select U.S. cities."
+  }
+];

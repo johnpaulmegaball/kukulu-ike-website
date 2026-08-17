@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Kūkulu ʻIke logo: a seedling inside a circle</title>
+  <defs>
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3A8F"/>
+      <stop offset="100%" stop-color="#2E9E5B"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#logoBg)"/>
+  <!-- ground line -->
+  <path d="M22 66 Q50 58 78 66" stroke="#FFD447" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- stem -->
+  <path d="M50 66 C50 52 50 46 50 38" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- left leaf -->
+  <path d="M50 50 C38 50 32 42 32 32 C44 32 50 40 50 50 Z" fill="#F2B705"/>
+  <!-- right leaf -->
+  <path d="M50 44 C62 44 68 36 68 26 C56 26 50 34 50 44 Z" fill="#FFFFFF"/>
+</svg>

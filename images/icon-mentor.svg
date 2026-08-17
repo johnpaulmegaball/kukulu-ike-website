@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t2">
+  <title id="t2">Mentorship icon: two people connected by a speech bubble</title>
+  <circle cx="18" cy="24" r="8" fill="none" stroke="#1B3A8F" stroke-width="3"/>
+  <path d="M6 50c0-8 6-13 12-13s12 5 12 13" fill="none" stroke="#1B3A8F" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="46" cy="20" r="7" fill="none" stroke="#2E9E5B" stroke-width="3"/>
+  <path d="M35 44c0-7 5-11 11-11s11 4 11 11" fill="none" stroke="#2E9E5B" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="34" r="3" fill="#F2B705"/>
+</svg>

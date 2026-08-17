@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+**/.DS_Store
+
+# Node dependencies (only relevant if local tooling is ever added)
+node_modules/
+
+# Claude Code local settings (machine-specific, not project content)
+.claude/settings.local.json
+
+# Raw/unedited source video footage — large, and not used directly by the
+# site (the site uses the optimized/converted versions committed below)
+videos/IMG_4072.mov
+videos/WaterRocket.mov
+videos/HOSASTEMConnect.mov

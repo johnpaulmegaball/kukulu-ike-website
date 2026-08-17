@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-labelledby="heroTitle">
+  <title id="heroTitle">Illustration of a rainbow arching over a growing seedling</title>
+  <!-- rainbow arcs, built from tints and shades of our brand blue, green and gold -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M20 260 A180 180 0 0 1 380 260" stroke="#1B3A8F" stroke-width="16"/>
+    <path d="M40 260 A160 160 0 0 1 360 260" stroke="#5B8DEF" stroke-width="16"/>
+    <path d="M60 260 A140 140 0 0 1 340 260" stroke="#2E9E5B" stroke-width="16"/>
+    <path d="M80 260 A120 120 0 0 1 320 260" stroke="#8ED1A6" stroke-width="16"/>
+    <path d="M100 260 A100 100 0 0 1 300 260" stroke="#F2B705" stroke-width="16"/>
+    <path d="M120 260 A80 80 0 0 1 280 260" stroke="#FFE18A" stroke-width="16"/>
+  </g>
+  <!-- ground -->
+  <ellipse cx="200" cy="272" rx="130" ry="14" fill="#2E9E5B" opacity="0.15"/>
+  <!-- seedling -->
+  <path d="M200 270 C200 230 200 210 200 180" stroke="#1F7A45" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M200 220 C175 220 162 205 162 185 C186 185 200 200 200 220 Z" fill="#2E9E5B"/>
+  <path d="M200 205 C225 205 238 190 238 170 C214 170 200 185 200 205 Z" fill="#3AA655"/>
+  <circle cx="200" cy="176" r="9" fill="#F2B705"/>
+</svg>

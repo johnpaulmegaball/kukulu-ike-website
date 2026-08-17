@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t3">
+  <title id="t3">Pipeline icon: three ascending steps with an arrow</title>
+  <rect x="6" y="42" width="12" height="14" fill="#F2B705"/>
+  <rect x="26" y="30" width="12" height="26" fill="#2E9E5B"/>
+  <rect x="46" y="16" width="12" height="40" fill="#1B3A8F"/>
+  <path d="M10 38 L30 26 L50 12" fill="none" stroke="#1B3A8F" stroke-width="2.5" stroke-dasharray="4 3" stroke-linecap="round"/>
+  <path d="M44 14 L50 12 L51 18" fill="none" stroke="#1B3A8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

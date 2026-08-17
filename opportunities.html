@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opportunities: Kūkulu ʻIke</title>
+  <meta name="description" content="Explore STEM competitions, programs, and opportunities students can pursue, curated by Kūkulu ʻIke.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Kūkulu ʻIke logo">
+        <span class="brand-text">
+          <strong>Kūkulu ʻIke</strong>
+          <span>From Seed to Scientist</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="opportunities.html">Opportunities</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="stem-path-quiz.html">STEM Path</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="events.html" class="btn btn-gold">Get Involved</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Opportunities</span>
+      <h1>Opportunity Explorer</h1>
+      <p class="lead">Competitions, programs, and mentorship opportunities students on O&#699;ahu can pursue, browse the list below and follow the link to learn more and apply.</p>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Why It Matters</span>
+        <h2>Why participate in STEM extracurriculars?</h2>
+        <p>Beyond the trophy or certificate, these programs change how students see themselves, and open doors a classroom alone can&rsquo;t.</p>
+      </div>
+      <div class="values-grid four-col">
+        <div class="value-item">
+          <div class="value-icon">🚀</div>
+          <h3>Explore Real Careers</h3>
+          <p>See what scientists, engineers, and researchers actually do before you commit to a major or career path.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🛠️</div>
+          <h3>Build Real Skills</h3>
+          <p>Coding, building, testing, presenting: extracurriculars teach hands-on skills classrooms alone don&rsquo;t always cover.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🎓</div>
+          <h3>Stand Out in Applications</h3>
+          <p>Competitions, research, and leadership roles give college applications and scholarships real substance.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <h3>Find Your People</h3>
+          <p>Meet mentors, teammates, and friends who share your curiosity, STEM is more fun with a team behind you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="matcher-card" id="opportunityMatcher">
+        <div class="matcher-intro">
+          <span class="eyebrow">Not Sure Where to Start?</span>
+          <h2>Find Your Match</h2>
+          <p>Answer three quick questions and we&rsquo;ll point you to opportunities that fit.</p>
+        </div>
+
+        <div class="matcher-progress" aria-hidden="true">
+          <span class="matcher-progress-dot" data-step="1"></span>
+          <span class="matcher-progress-dot" data-step="2"></span>
+          <span class="matcher-progress-dot" data-step="3"></span>
+        </div>
+        <p class="matcher-step-label" id="matcherStepLabel" aria-live="polite">Step 1 of 3</p>
+
+        <div class="matcher-step" data-step="1">
+          <h3>What grade are you in?</h3>
+          <div class="matcher-options" data-question="grade">
+            <button type="button" class="matcher-option" data-value="elementary">
+              <span class="matcher-option-icon" aria-hidden="true">🌱</span>
+              <span>Elementary School</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="middle">
+              <span class="matcher-option-icon" aria-hidden="true">🌿</span>
+              <span>Middle School</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="high">
+              <span class="matcher-option-icon" aria-hidden="true">🌳</span>
+              <span>High School</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="matcher-step" data-step="2" hidden>
+          <button type="button" class="matcher-back">&larr; Back</button>
+          <h3>What are you into?</h3>
+          <p class="matcher-substep-note">Pick as many as you like, or none if you&rsquo;re not sure yet.</p>
+          <div class="matcher-options matcher-options-multi" id="matcherFieldOptions" data-question="field"></div>
+          <button type="button" class="btn btn-primary matcher-continue" id="matcherFieldContinue">Continue</button>
+        </div>
+
+        <div class="matcher-step" data-step="3" hidden>
+          <button type="button" class="matcher-back">&larr; Back</button>
+          <h3>What are you looking for?</h3>
+          <div class="matcher-options" data-question="type">
+            <button type="button" class="matcher-option" data-value="competition">
+              <span class="matcher-option-icon" aria-hidden="true">🏆</span>
+              <span>Competing Against Other Students</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="internship">
+              <span class="matcher-option-icon" aria-hidden="true">💼</span>
+              <span>Real-World Work Experience</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="research">
+              <span class="matcher-option-icon" aria-hidden="true">🔬</span>
+              <span>Independent Research</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="scholarship">
+              <span class="matcher-option-icon" aria-hidden="true">💰</span>
+              <span>Scholarships &amp; Funding</span>
+            </button>
+            <button type="button" class="matcher-option" data-value="mentors">
+              <span class="matcher-option-icon" aria-hidden="true">🧑‍🏫</span>
+              <span>Mentorship</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="matcher-step matcher-results" data-step="results" hidden>
+          <h3>Your Matches</h3>
+          <p class="matcher-results-note" id="matcherResultsNote"></p>
+          <div class="card-grid" id="matcherResultsGrid"></div>
+          <button type="button" class="btn btn-outline matcher-restart" id="matcherRestart">Start Over</button>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <span class="eyebrow">Browse Everything</span>
+        <h2>All Opportunities</h2>
+      </div>
+
+      <div class="opp-search-row">
+        <label for="opportunitySearch" class="visually-hidden">Search opportunities by name or keyword</label>
+        <input type="search" id="opportunitySearch" class="opp-search-input" placeholder="Search opportunities by name or keyword&hellip;">
+        <button type="button" class="btn btn-outline opp-reset-btn" id="opportunityResetBtn">Clear All Filters</button>
+      </div>
+
+      <div class="opp-filters">
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Type</span>
+          <div class="opp-filter-chips" id="typeFilterChips" role="group" aria-label="Filter by opportunity type">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="type" data-value="all">All</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="type" data-value="competition">Competition</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="type" data-value="internship">Internship</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="type" data-value="research">Research</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="type" data-value="scholarship">Scholarship</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="type" data-value="mentors">Mentors</button>
+          </div>
+        </div>
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Field of interest</span>
+          <div class="opp-filter-chips" id="fieldFilterChips" role="group" aria-label="Filter by field of interest">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="field" data-value="all">All</button>
+          </div>
+        </div>
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Grade level</span>
+          <div class="opp-filter-chips" id="gradeFilterChips" role="group" aria-label="Filter by grade level">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="grade" data-value="all">All</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="grade" data-value="elementary">Elementary School</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="grade" data-value="middle">Middle School</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="grade" data-value="high">High School</button>
+          </div>
+        </div>
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Location</span>
+          <div class="opp-filter-chips" id="locationFilterChips" role="group" aria-label="Filter by location">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="location" data-value="all">All</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="location" data-value="oahu">O&#699;ahu</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="location" data-value="hawaii">Hawai&#699;i</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="location" data-value="mainland">Mainland</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="location" data-value="online">Online</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="location" data-value="international">International</button>
+          </div>
+        </div>
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Cost</span>
+          <div class="opp-filter-chips" id="costFilterChips" role="group" aria-label="Filter by cost">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="cost" data-value="all">All</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="cost" data-value="free">Free</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="cost" data-value="paid">Paid / Stipend</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="cost" data-value="fee">Fee Required</button>
+          </div>
+        </div>
+        <div class="opp-filter-row">
+          <span class="opp-filter-label">Season</span>
+          <div class="opp-filter-chips" id="seasonFilterChips" role="group" aria-label="Filter by season">
+            <button type="button" class="filter-chip active" aria-pressed="true" data-filter-row="season" data-value="all">All</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="season" data-value="summer">Summer</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="season" data-value="school-year">School Year</button>
+            <button type="button" class="filter-chip" aria-pressed="false" data-filter-row="season" data-value="ongoing">Rolling / Ongoing</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="opp-result-count" id="opportunityCount" aria-live="polite">Showing 86 opportunities</p>
+
+      <div class="card-grid" id="opportunityGrid"></div>
+
+      <p class="opportunities-empty" id="opportunitiesEmpty">No opportunities match your filters. Try clearing a filter or searching a different keyword.</p>
+
+      <p class="opportunities-disclaimer">Opportunities listed here are shared as informational resources for students. Unless otherwise stated, K&#363;kulu &#699;Ike is not affiliated with or endorsed by the organizations listed. Program details, deadlines, and eligibility requirements may change, please visit the linked official websites for the most current information.</p>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Know an opportunity we should add?</h2>
+        <p>If you know of a great STEM competition, program, or scholarship for O&#699;ahu students, let us know and we&rsquo;ll add it here.</p>
+        <div class="btn-row">
+          <a href="contact.html" class="btn btn-gold">Suggest an Opportunity</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="images/logo.svg" alt="">
+            <strong>K&#363;kulu &#699;Ike</strong>
+          </div>
+          <p>A student-led STEM outreach initiative on O&#699;ahu connecting local students with scientists and engineers, from seed to scientist.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About / Mission</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="opportunities.html">Opportunities</a></li>
+            <li><a href="roadmap.html">Roadmap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="contact.html">Contact / Get Involved</a></li>
+            <li><a href="mailto:kukulu.ike.moanalua@gmail.com">kukulu.ike.moanalua@gmail.com</a></li>
+            <li><a href="https://www.instagram.com/kukuluikeinitiative" target="_blank" rel="noopener">Instagram: @kukuluikeinitiative</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 K&#363;kulu &#699;Ike. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/opportunities-data.js"></script>
+  <script src="js/opportunities.js"></script>
+  <script src="js/opportunity-matcher.js"></script>
+</body>
+</html>
