@@ -736,7 +736,7 @@ var OPPORTUNITIES = [
   {
     name: "Research Science Institute (RSI)",
     icon: "🔬",
-    href: "https://www.cee.org/programs/research-science-institute-rsi/",
+    href: "https://www.cee.org/programs/research-science-institute",
     type: "research",
     fields: ["general-stem"],
     grades: ["high"],
