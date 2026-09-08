@@ -1336,5 +1336,19 @@ var OPPORTUNITIES = [
     status: "closed",
     deadline: "Free 2-week camps each summer, applications typically open in spring",
     description: "Free 2-week coding camps for young women and gender-expansive teens, virtual or in select U.S. cities."
+  },
+  {
+    name: "Queen's Ambassador Program",
+    icon: "🏥",
+    href: "https://www.queens.org/careers/volunteer/",
+    type: "mentors",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "ongoing",
+    status: "open",
+    deadline: "Rolling, teen volunteers (ages 15-18) need parental permission and a minimum 64-hour commitment",
+    description: "Volunteer at The Queen's Medical Center supporting patients and their families, real hands-on exposure to a hospital and healthcare careers."
   }
 ];
