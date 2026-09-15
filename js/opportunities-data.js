@@ -844,7 +844,7 @@ var OPPORTUNITIES = [
     cost: "free",
     season: "school-year",
     status: "open",
-    deadline: "Applications typically open in June and close in mid-November",
+    deadline: "November 5, 2026, 8 PM ET (3 PM HST)",
     description: "The nation's oldest and most prestigious research competition for seniors, judged on an independent research project."
   },
   {
@@ -1350,5 +1350,105 @@ var OPPORTUNITIES = [
     status: "open",
     deadline: "Rolling, teen volunteers (ages 15-18) need parental permission and a minimum 64-hour commitment",
     description: "Volunteer at The Queen's Medical Center supporting patients and their families, real hands-on exposure to a hospital and healthcare careers."
+  },
+
+  // ---- Added later: scholarships for Hawaiʻi and national seniors ----
+  {
+    name: "AFCEA Hawaii STEM Scholarships",
+    icon: "🎖️",
+    href: "https://www.afceahawaii.org/education-programs",
+    type: "scholarship",
+    fields: ["computer-science", "general-stem"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Estimated around March 2027 (last cycle closed March 14, 2026), confirm the exact date on AFCEA Hawaii's site",
+    description: "Multiple merit awards for Hawaiʻi students pursuing STEM, including cybersecurity and intelligence fields, up to $5,000."
+  },
+  {
+    name: "Hawaiʻi Community Foundation (HCF) Scholarships",
+    icon: "🏝️",
+    href: "https://www.hawaiicommunityfoundation.org/students",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "Estimated window December 2026 through late February 2027 (last cycle: Dec 8 - Feb 26), confirm exact dates on HCF's site",
+    description: "One application considers Hawaiʻi seniors for 170+ scholarship funds, many supporting STEM students, award amounts vary by fund."
+  },
+  {
+    name: "Pauahi Foundation Scholarships",
+    icon: "🎓",
+    href: "https://pauahi.org/postsecondary-scholarships",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "2027-28 applications open October 1, 2026, estimated close around November 30, 2026, confirm the exact date on Pauahi's site",
+    description: "Postsecondary scholarships open to the public with preference for applicants of Hawaiian ancestry, including funds for STEM students."
+  },
+  {
+    name: "Davidson Fellows Scholarship",
+    icon: "🌟",
+    href: "https://www.davidsongifted.org/gifted-programs/fellows-scholarship/",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "opening-soon",
+    deadline: "2027 applications open fall 2026, estimated deadline mid-February 2027, confirm the exact date on Davidson's site",
+    description: "A major scholarship for students 18 and under with a significant, near-graduate-level project in STEM, literature, music, or other fields, worth $25,000 to $100,000."
+  },
+  {
+    name: "Coca-Cola Scholars Program",
+    icon: "🏆",
+    href: "https://www.coca-colascholarsfoundation.org/apply/",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "open",
+    deadline: "September 30, 2026, 5 PM ET (11 AM HST), a required eligibility quiz is due one hour earlier",
+    description: "A $20,000 national scholarship recognizing leadership and community service, not STEM-specific, open to any high school senior with a strong record of impact."
+  },
+  {
+    name: "Society of Women Engineers (SWE) Scholarships",
+    icon: "⚙️",
+    href: "https://swe.org/scholarships/",
+    type: "scholarship",
+    fields: ["engineering", "computer-science"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Estimated around spring 2027, confirm the exact date on SWE's site",
+    description: "National scholarships for women pursuing engineering, engineering technology, or computer science, one application considers you for every award you qualify for."
+  },
+  {
+    name: "ASME High School Scholarships",
+    icon: "🔧",
+    href: "https://www.asme.org/asme-programs/students-and-faculty/scholarships/available-high-school-scholarships",
+    type: "scholarship",
+    fields: ["engineering"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "The 2026-27 cycle has closed, next cycle expected spring 2027, check ASME's site for updates",
+    description: "Scholarships from the American Society of Mechanical Engineers for high schoolers entering an ABET-accredited mechanical engineering program."
   }
 ];
