@@ -1450,5 +1450,19 @@ var OPPORTUNITIES = [
     status: "closed",
     deadline: "The 2026-27 cycle has closed, next cycle expected spring 2027, check ASME's site for updates",
     description: "Scholarships from the American Society of Mechanical Engineers for high schoolers entering an ABET-accredited mechanical engineering program."
+  },
+  {
+    name: "SMART Scholarship-for-Service Program",
+    icon: "🛡️",
+    href: "https://www.smartscholarship.org/smart/en",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "open",
+    deadline: "Applications open August 1 and close the first Friday in December (December 4, 2026, 5 PM ET this cycle). Note: current high schoolers must wait until they're enrolled in college to apply",
+    description: "A Department of Defense scholarship covering full tuition plus a $25,000-$38,000 yearly stipend for STEM college students, in exchange for a matching period of DoD service after graduation."
   }
 ];
