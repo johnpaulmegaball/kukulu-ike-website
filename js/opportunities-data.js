@@ -1464,5 +1464,47 @@ var OPPORTUNITIES = [
     status: "open",
     deadline: "Applications open August 1 and close the first Friday in December (December 4, 2026, 5 PM ET this cycle). Note: current high schoolers must wait until they're enrolled in college to apply",
     description: "A Department of Defense scholarship covering full tuition plus a $25,000-$38,000 yearly stipend for STEM college students, in exchange for a matching period of DoD service after graduation."
+  },
+  {
+    name: "FIRST Scholarships",
+    icon: "🎓",
+    href: "https://www.firstinspires.org/resources/library/scholarships",
+    type: "scholarship",
+    fields: ["robotics", "engineering", "general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Deadlines vary by individual scholarship listed in the library, check FIRST's site for current opportunities and dates",
+    description: "A directory of scholarships available to FIRST Robotics, Tech Challenge, and LEGO League alumni, hosted by FIRST Inspires."
+  },
+  {
+    name: "Breakthrough Junior Challenge",
+    icon: "🎬",
+    href: "https://breakthroughjuniorchallenge.org/enter",
+    type: "competition",
+    fields: ["physics", "life-health", "math"],
+    grades: ["high"],
+    location: "international",
+    cost: "free",
+    season: "school-year",
+    status: "closed",
+    deadline: "The 2026 deadline was September 15, 2026, the next cycle typically opens in spring with a similar fall deadline, check the site for updates",
+    description: "Submit an original 2-minute video explaining a concept in physics, life sciences, or math for a chance at a $250,000 scholarship, a global competition open to ages 13-18."
+  },
+  {
+    name: "ANS Incoming Freshman Scholarship",
+    icon: "⚛️",
+    href: "https://www.ans.org/scholarships/freshman/",
+    type: "scholarship",
+    fields: ["physics", "engineering"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "annual",
+    deadline: "Deadline is typically April 1 each year, confirm the exact date on ANS's site",
+    description: "Up to four $1,000 scholarships for graduating seniors pursuing nuclear engineering or nuclear science, requires ANS student membership and a short essay."
   }
 ];
