@@ -1506,5 +1506,19 @@ var OPPORTUNITIES = [
     status: "annual",
     deadline: "Deadline is typically April 1 each year, confirm the exact date on ANS's site",
     description: "Up to four $1,000 scholarships for graduating seniors pursuing nuclear engineering or nuclear science, requires ANS student membership and a short essay."
+  },
+  {
+    name: "Science Ambassador Scholarship",
+    icon: "🎥",
+    href: "https://www.scienceambassadorscholarship.org/",
+    type: "scholarship",
+    fields: ["general-stem"],
+    grades: ["high"],
+    location: "mainland",
+    cost: "free",
+    season: "school-year",
+    status: "open",
+    deadline: "The 2027 cycle is open now through December 14, 2026",
+    description: "Cards Against Humanity's scholarship for women and non-binary students in STEM. Film a 3-minute mini-lecture explaining a STEM topic you're passionate about for a chance at one of five $20,000 awards."
   }
 ];
