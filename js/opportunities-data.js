@@ -1520,5 +1520,19 @@ var OPPORTUNITIES = [
     status: "open",
     deadline: "The 2027 cycle is open now through December 14, 2026",
     description: "Cards Against Humanity's scholarship for women and non-binary students in STEM. Film a 3-minute mini-lecture explaining a STEM topic you're passionate about for a chance at one of five $20,000 awards."
+  },
+  {
+    name: "JABSOM High School & Undergraduate Research Opportunities",
+    icon: "🧬",
+    href: "https://jabsom.hawaii.edu/research/trainees/high-school-and-undergraduate-opportunities-in-research.html",
+    type: "research",
+    fields: ["life-health"],
+    grades: ["high"],
+    location: "hawaii",
+    cost: "free",
+    season: "summer",
+    status: "open",
+    deadline: "A directory of 7 separate research programs, each with its own contact and deadline, mostly summer, see JABSOM's page for details",
+    description: "A directory of free biomedical research and mentoring programs at UH Mānoa's medical school, some open to high schoolers, others to college students, spanning cancer research, physician shadowing, and hands-on lab work."
   }
 ];
